@@ -15,6 +15,7 @@ class _LibraryPageState extends State<LibraryPage> {
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Card(
           elevation: 10,
+          //color: Color(0xFFE1625F),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -23,7 +24,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Icon(Icons.file_copy),
+                      Icon(Icons.file_copy, color: Color(0xFFE1625F)),
                       SizedBox(width: 20),
                       Expanded(
                         child: Column(
@@ -34,6 +35,7 @@ class _LibraryPageState extends State<LibraryPage> {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
+                                //color: Colors.white,
                               ),
                             ),
                             SizedBox(height: 10),
@@ -42,6 +44,7 @@ class _LibraryPageState extends State<LibraryPage> {
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
+                                //color: Colors.white,
                               ),
                             ),
                           ],
@@ -55,6 +58,8 @@ class _LibraryPageState extends State<LibraryPage> {
                   children: [
                     Card(
                       elevation: 10,
+                      color: Color(0xFFF2FEF7),
+                      //color: Color(0xFFFF8A80),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -62,7 +67,10 @@ class _LibraryPageState extends State<LibraryPage> {
                         padding: const EdgeInsets.all(3.0),
                         child: Row(
                           children: [
-                            Icon(Icons.drive_file_move),
+                            Icon(
+                              Icons.drive_file_move,
+                              color: Color(0xFFE1625F),
+                            ),
                             SizedBox(width: 15),
                             Text("Open in Drive"),
                           ],
@@ -72,6 +80,8 @@ class _LibraryPageState extends State<LibraryPage> {
                     SizedBox(width: 15),
                     Card(
                       elevation: 10,
+                      color: Color(0xFFF2FEF7),
+                      //color: Color(0xFFFF8A80),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -79,7 +89,7 @@ class _LibraryPageState extends State<LibraryPage> {
                         padding: const EdgeInsets.all(3.0),
                         child: Row(
                           children: [
-                            Icon(Icons.share),
+                            Icon(Icons.share, color: Color(0xFFE1625F)),
                             SizedBox(width: 15),
                             Text("Share Link"),
                           ],
@@ -114,7 +124,7 @@ class _LibraryPageState extends State<LibraryPage> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Search Materials",
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: Icon(Icons.search, color: Color(0xFFE1625F)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
