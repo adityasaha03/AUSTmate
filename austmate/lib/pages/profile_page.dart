@@ -74,11 +74,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     SizedBox(height: 5),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 12),
+
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade100,
+                        //color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.grey),
                       ),
+
                       child: DropdownButton<String>(
                         value: selectedSemester,
                         isExpanded: true,
