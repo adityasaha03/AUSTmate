@@ -90,9 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                                   },
                                 ),
-                                Flexible(child: Text("Remember Me")),
+                                Expanded(child: Text("Remember Me")),
                                 Spacer(),
-                                Flexible(
+                                Expanded(
                                   child: TextButton(
                                     onPressed: () {},
                                     child: Text("Forgot Password"),

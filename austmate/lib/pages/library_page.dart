@@ -10,7 +10,12 @@ class LibraryPage extends StatefulWidget {
 class _LibraryPageState extends State<LibraryPage> {
   @override
   Widget build(BuildContext context) {
-    Widget MaterialCard(String courseName, String courseDetails) {
+    Widget MaterialCard(
+      String courseName,
+      String courseDetails,
+      String driveName,
+      String shareLink,
+    ) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Card(
@@ -63,17 +68,23 @@ class _LibraryPageState extends State<LibraryPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.drive_file_move,
-                              color: Color(0xFFE1625F),
-                            ),
-                            SizedBox(width: 15),
-                            Text("Open in Drive"),
-                          ],
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(5),
+                        onTap: () {
+                          print("Tap on ${driveName}");
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.drive_file_move,
+                                color: Color(0xFFE1625F),
+                              ),
+                              SizedBox(width: 15),
+                              Text("Open in Drive"),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -85,14 +96,20 @@ class _LibraryPageState extends State<LibraryPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Row(
-                          children: [
-                            Icon(Icons.share, color: Color(0xFFE1625F)),
-                            SizedBox(width: 15),
-                            Text("Share Link"),
-                          ],
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(5),
+                        onTap: () {
+                          print("Tap on ${shareLink}");
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Row(
+                            children: [
+                              Icon(Icons.share, color: Color(0xFFE1625F)),
+                              SizedBox(width: 15),
+                              Text("Share Link"),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -132,12 +149,42 @@ class _LibraryPageState extends State<LibraryPage> {
               ),
             ),
             SizedBox(height: 25),
-            MaterialCard("Software Development - II", "CSE 2100"),
-            MaterialCard("Data Structure", "CSE 2103"),
-            MaterialCard("Data Structure Lab", "CSE 2104"),
-            MaterialCard("Digital Logic Design", "CSE 2105"),
-            MaterialCard("Digital Logic Design Lab", "CSE 2106"),
-            MaterialCard("Electrical and Electronic Engineering", "EEE 2141"),
+            MaterialCard(
+              "Software Development - II",
+              "CSE 2100",
+              "CSE 2100",
+              "Share Link",
+            ),
+            MaterialCard(
+              "Data Structure",
+              "CSE 2103",
+              "CSE 2103",
+              "Share Link",
+            ),
+            MaterialCard(
+              "Data Structure Lab",
+              "CSE 2104",
+              "CSE 2104",
+              "Share Link",
+            ),
+            MaterialCard(
+              "Digital Logic Design",
+              "CSE 2105",
+              "CSE 2105",
+              "Share Link",
+            ),
+            MaterialCard(
+              "Digital Logic Design Lab",
+              "CSE 2106",
+              "CSE 2106",
+              "Share Link",
+            ),
+            MaterialCard(
+              "Electrical and Electronic Engineering",
+              "EEE 2141",
+              "EEE 2141",
+              "Share Link",
+            ),
           ],
         ),
       ),
