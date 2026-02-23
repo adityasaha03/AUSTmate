@@ -1,4 +1,4 @@
-import 'package:austmate/pages/login_page.dart';
+import 'package:austmate/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/home_page.dart';
@@ -11,7 +11,7 @@ void main() {
     const MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: SimpleNavigation(),
-      home: LoginPage(),
+      home: SplashScreen(),
     ),
   );
 }
