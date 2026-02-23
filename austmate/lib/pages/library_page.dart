@@ -21,6 +21,7 @@ class _LibraryPageState extends State<LibraryPage> {
         child: Card(
           elevation: 10,
           //color: Color(0xFFE1625F),
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -63,46 +64,51 @@ class _LibraryPageState extends State<LibraryPage> {
                   children: [
                     Card(
                       elevation: 10,
-                      color: Color(0xFFF2FEF7),
+                      color: Color(0xFFFF5A5F),
                       //color: Color(0xFFFF8A80),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(20),
                         onTap: () {
                           print("Tap on ${driveName}");
                         },
                         child: Padding(
-                          padding: const EdgeInsets.all(3.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               Icon(
                                 Icons.drive_file_move,
-                                color: Color(0xFFE1625F),
+                                //color: Color(0xFFE1625F),
+                                color: Colors.white,
                               ),
                               SizedBox(width: 15),
-                              Text("Open in Drive"),
+                              Text(
+                                "Open in Drive",
+                                style: TextStyle(color: Colors.white),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(width: 15),
+                    //SizedBox(width: 15),
+                    Spacer(),
                     Card(
                       elevation: 10,
                       color: Color(0xFFF2FEF7),
                       //color: Color(0xFFFF8A80),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                       child: InkWell(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(20),
                         onTap: () {
                           print("Tap on ${shareLink}");
                         },
                         child: Padding(
-                          padding: const EdgeInsets.all(3.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               Icon(Icons.share, color: Color(0xFFE1625F)),
@@ -123,6 +129,7 @@ class _LibraryPageState extends State<LibraryPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.grey.shade50,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -138,12 +145,25 @@ class _LibraryPageState extends State<LibraryPage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Search Materials",
-                  prefixIcon: Icon(Icons.search, color: Color(0xFFE1625F)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade400,
+                      blurRadius: 6,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Search Materials",
+                    prefixIcon: Icon(Icons.search, color: Color(0xFFE1625F)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
