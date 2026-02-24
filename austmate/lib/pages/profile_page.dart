@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:austmate/pages/login_page.dart';
+import 'package:austmate/pages/scheduler_page.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -107,6 +110,65 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
+
+              const SizedBox(height: 30),
+
+            /// ✅ BUTTON ROW
+            Row(
+              children: [
+                
+                
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SchedulerPage(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFE76C6C),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: const Text(
+                      "Set Schedule",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(width: 15),
+                
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFE76C6C),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50), // pill shape
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: const Text(
+                      "Logout",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             ],
           ),
         ),

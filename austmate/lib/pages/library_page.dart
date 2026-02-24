@@ -139,10 +139,11 @@ class _LibraryPageState extends State<LibraryPage> {
                 alignment: AlignmentGeometry.centerLeft,
                 child: Text(
                   "Drive & Resources",
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
+            const SizedBox(height:15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Container(
