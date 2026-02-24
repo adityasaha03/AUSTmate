@@ -1,3 +1,4 @@
+import 'package:austmate/pages/GpaCalculator/gpa_calculator_screen.dart';
 import 'package:austmate/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,7 @@ class _SimpleNavigationState extends State<SimpleNavigation> {
     } else if (currentIndex == 1) {
       currentPage = const LibraryPage();
     } else if (currentIndex == 2) {
-      currentPage = const CgCalculatorPage();
+      currentPage = GPACalculatorScreen();
     } else {
       currentPage = const ProfilePage();
     }
