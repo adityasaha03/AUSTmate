@@ -99,7 +99,7 @@ class GPACalculatorScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 4),
                           Text(
-                            '16',
+                            '12',
                             style: TextStyle(
                               color: Colors.black26,
                               fontSize: 32,

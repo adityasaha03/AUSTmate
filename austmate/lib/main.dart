@@ -1,11 +1,10 @@
 import 'package:austmate/pages/GpaCalculator/gpa_calculator_screen.dart';
+import 'package:austmate/pages/HomeScreen/home_screen.dart';
 import 'package:austmate/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/home_page.dart';
 import 'pages/library_page.dart';
 import 'pages/profile_page.dart';
-import 'pages/cg_calculator_page.dart';
 
 void main() {
   runApp(
@@ -32,7 +31,7 @@ class _SimpleNavigationState extends State<SimpleNavigation> {
     Widget currentPage;
 
     if (currentIndex == 0) {
-      currentPage = const HomePage();
+      currentPage = const HomeScreen();
     } else if (currentIndex == 1) {
       currentPage = const LibraryPage();
     } else if (currentIndex == 2) {

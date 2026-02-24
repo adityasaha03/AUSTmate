@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+
+class TaskItem extends StatelessWidget {
+  final String title;
+  final String badge;
+  final Color badgeColor;
+  final bool bold;
+
+  const TaskItem({
+    super.key,
+    required this.title,
+    required this.badge,
+    required this.badgeColor,
+    this.bold = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF6F2F2),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontWeight: bold ? FontWeight.bold : FontWeight.w500,
+                fontSize: 16,
+                color: Colors.black,
+                letterSpacing: 0.2,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 16),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          decoration: BoxDecoration(
+            color: badgeColor,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Text(
+            badge,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
