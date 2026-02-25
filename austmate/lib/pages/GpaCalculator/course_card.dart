@@ -12,7 +12,9 @@ class CourseCard extends StatefulWidget {
 class _CourseCardState extends State<CourseCard> {
   late String selectedGrade;
 
-  final List<String> grades = ['A+','A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F'];
+  final List<String> grades = [
+    'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F'
+  ];
 
   @override
   void initState() {
@@ -24,8 +26,16 @@ class _CourseCardState extends State<CourseCard> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFFE76C6C),
-        borderRadius: BorderRadius.circular(24),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
+        border: Border.all(color: Color(0xFFE76C6C), width: 1.2),
       ),
       padding: const EdgeInsets.all(18),
       child: Column(
@@ -34,9 +44,10 @@ class _CourseCardState extends State<CourseCard> {
           Text(
             widget.course.code,
             style: const TextStyle(
-              color: Colors.black54,
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
+              color: Color(0xFFE76C6C),
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.5,
             ),
           ),
           const SizedBox(height: 4),
@@ -44,84 +55,103 @@ class _CourseCardState extends State<CourseCard> {
             widget.course.title,
             style: const TextStyle(
               color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
+              fontSize: 19,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 0.2,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 18),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Credits',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Credits',
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    '${widget.course.credits}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                    const SizedBox(height: 2),
+                    Text(
+                      '${widget.course.credits}',
+                      style: const TextStyle(
+                        color: Color(0xFFE76C6C),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(width: 48),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Grade (Letter)',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Grade (Letter)',
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 2),
-                  DropdownButton<String>(
-                    value: selectedGrade,
-                    dropdownColor: const Color(0xFFE76C6C),
-                    icon: const Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                    underline: Container(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    items: grades.map((grade) {
-                      return DropdownMenuItem<String>(
-                        value: grade,
-                        child: Text(
-                          grade,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                    const SizedBox(height: 2),
+                    SizedBox(
+                      height: 36,
+                      width: 90,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: selectedGrade,
+                            dropdownColor: Colors.white,
+                            icon: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Color(0xFFE76C6C),
+                              size: 20,
+                            ),
+                            style: const TextStyle(
+                              color: Color(0xFFE76C6C),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            isExpanded: true,
+                            items: grades.map((grade) {
+                              return DropdownMenuItem<String>(
+                                value: grade,
+                                child: Center(
+                                  child: Text(
+                                    grade,
+                                    style: const TextStyle(
+                                      color: Color(0xFFE76C6C),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedGrade = value!;
+                              });
+                            },
                           ),
                         ),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedGrade = value!;
-                      });
-                    },
-                  ),
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

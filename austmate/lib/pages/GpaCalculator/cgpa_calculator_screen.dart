@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'course.dart';
 import 'course_card.dart';
 
-class GPACalculatorScreen extends StatelessWidget {
+class SemesterCGPACalculatorScreen extends StatelessWidget {
+  SemesterCGPACalculatorScreen({super.key});
+
   final List<Course> courses = [
     Course(
       code: 'CSE 2100',
@@ -44,25 +46,51 @@ class GPACalculatorScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'GPA Calculator',
+                    "Quick CGPA Calculator",
                     style: TextStyle(
                       color: Color(0xFFE76C6C),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 20),
                   const Text(
                     'Spring 2025',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 18),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Your CGPA',
+                            style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            '3.66',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ],
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
@@ -70,22 +98,22 @@ class GPACalculatorScreen extends StatelessWidget {
                             'Your GPA',
                             style: TextStyle(
                               color: Colors.black54,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(height: 4),
                           Text(
                             '3.85',
                             style: TextStyle(
-                              color: Color(0xFF6FCF97),
-                              fontSize: 32,
+                              color: Colors.black,
+                              fontSize: 28,
                               fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(width: 48),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
@@ -93,17 +121,18 @@ class GPACalculatorScreen extends StatelessWidget {
                             'Total Credits',
                             style: TextStyle(
                               color: Colors.black54,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(height: 4),
                           Text(
                             '12',
                             style: TextStyle(
-                              color: Colors.black26,
-                              fontSize: 32,
+                              color: Colors.black,
+                              fontSize: 28,
                               fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ],
