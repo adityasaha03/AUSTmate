@@ -15,152 +15,135 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.blue, Colors.purple],
-            ),
-          ),
-          child: Center(
-            child: SafeArea(
-              child: Column(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            //crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Spacer(),
+
+              Icon(
+                Icons.lock_person_rounded,
+                size: 80,
+                color: Color(0xFFE53935),
+              ),
+              SizedBox(height: 20),
+              Text(
+                "Welcome Back",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              Text(
+                "Sign in to continue",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey),
+              ),
+              SizedBox(height: 40),
+
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "Student ID",
+                  prefixIcon: const Icon(Icons.badge_outlined),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: "Password",
+                  prefixIcon: const Icon(Icons.lock_outline),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+
+              Row(
+                children: [
+                  Checkbox(
+                    value: rememberMe,
+                    activeColor: const Color(0xFFE53935),
+                    onChanged: (value) {
+                      setState(() {
+                        rememberMe = value!;
+                      });
+                    },
+                  ),
+                  Text("Remember Me"),
+                  Spacer(),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Forgot Password?",
+                      style: TextStyle(color: Color(0xFFE53935)),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+
+              SizedBox(
+                height: 55,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SimpleNavigation(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFE53935),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+
+              const Spacer(),
+
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 25),
-                          Icon(Icons.security, size: 60),
-                          SizedBox(height: 25),
-                          Text(
-                            "Sign in to your Account",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          SizedBox(height: 25),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: "Student Id",
-                                hintText: "00724...",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 25),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                labelText: "Password",
-                                hintText: "1234....",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              obscureText: true,
-                            ),
-                          ),
-                          SizedBox(height: 25),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              children: [
-                                Checkbox(
-                                  value: rememberMe,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      rememberMe = value!;
-                                    });
-                                  },
-                                ),
-                                Expanded(child: Text("Remember Me")),
-                                Spacer(),
-                                Expanded(
-                                  child: TextButton(
-                                    onPressed: () {},
-                                    child: Text("Forgot Password"),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 25),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 60),
-                            child: MaterialButton(
-                              minWidth: double.infinity,
-                              color: Colors.redAccent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SimpleNavigation(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 25),
-                          SizedBox(height: 25),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Don't have an account?"),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => RegistrationPage(),
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "Sign Up",
-                                  style: TextStyle(
-                                    color: Colors.blueAccent,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                  const Text("Don't have an account?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegistrationPage(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: Color(0xFFE53935),
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
+              const SizedBox(height: 10),
+            ],
           ),
         ),
       ),
