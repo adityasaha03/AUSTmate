@@ -99,7 +99,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                /// Course Dropdown
+                
                 const Text("Course",
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(height: 12),
@@ -127,7 +127,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                 const SizedBox(height: 35),
 
-                /// Weekdays
+                
                 const Text("Weekdays",
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(height: 15),
@@ -174,7 +174,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                 const SizedBox(height: 40),
 
-                /// Time Sections
+                
                 buildTimeRow(
                   "Time (Day 1)",
                   oneFrom,
@@ -201,16 +201,15 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                 const SizedBox(height: 20),
 
-                /// ✅ Pill Button (Added Here)
+                
                 Align(
                   alignment: Alignment.centerRight,
                   child: ElevatedButton(
                     onPressed: () {
-                      // TODO: Add save logic
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-                          const Color(0xFFE76C6C), // matches weekday color
+                          const Color(0xFFE76C6C), 
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 28,
@@ -218,7 +217,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                            BorderRadius.circular(30), // pill shape
+                            BorderRadius.circular(30), 
                       ),
                       elevation: 3,
                     ),

@@ -79,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: EdgeInsets.symmetric(horizontal: 12),
 
                       decoration: BoxDecoration(
-                        //color: Colors.grey.shade100,
+                      
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.grey),
                       ),
@@ -113,11 +113,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
               const SizedBox(height: 30),
 
-            /// ✅ BUTTON ROW
             Row(
               children: [
-                
-                
+                                
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
@@ -157,7 +155,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFE76C6C),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50), // pill shape
+                        borderRadius: BorderRadius.circular(50), 
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
