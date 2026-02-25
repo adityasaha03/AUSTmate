@@ -8,6 +8,19 @@ class LibraryPage extends StatefulWidget {
 }
 
 class _LibraryPageState extends State<LibraryPage> {
+  String selectedSemester = "Year 1 Semester 1";
+
+  List<String> semesterList = [
+    "Year 1 Semester 1",
+    "Year 1 Semester 2",
+    "Year 2 Semester 1",
+    "Year 2 Semester 2",
+    "Year 3 Semester 1",
+    "Year 3 Semester 2",
+    "Year 4 Semester 1",
+    "Year 4 Semester 2",
+  ];
+
   @override
   Widget build(BuildContext context) {
     Widget MaterialCard(
@@ -63,7 +76,7 @@ class _LibraryPageState extends State<LibraryPage> {
                 Row(
                   children: [
                     Card(
-                      elevation: 10,
+                      //elevation: 10,
                       color: Color(0xFFFF5A5F),
                       //color: Color(0xFFFF8A80),
                       shape: RoundedRectangleBorder(
@@ -95,24 +108,27 @@ class _LibraryPageState extends State<LibraryPage> {
                     ),
                     //SizedBox(width: 15),
                     Spacer(),
-                    Card(
-                      elevation: 10,
-                      color: Color(0xFFF2FEF7),
-                      //color: Color(0xFFFF8A80),
-                      shape: RoundedRectangleBorder(
+                    Container(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
+                        color: Color(0xFFF2FEF7),
+                        border: Border.all(color: Colors.red, width: 1.5),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
                         onTap: () {
-                          print("Tap on ${shareLink}");
+                          print("Tap on $shareLink");
                         },
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
                           child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(Icons.share, color: Color(0xFFE1625F)),
-                              SizedBox(width: 15),
+                              SizedBox(width: 8),
                               Text("Share Link"),
                             ],
                           ),
@@ -143,7 +159,7 @@ class _LibraryPageState extends State<LibraryPage> {
                 ),
               ),
             ),
-            const SizedBox(height:15),
+            const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Container(
@@ -166,6 +182,48 @@ class _LibraryPageState extends State<LibraryPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Select Semester", style: TextStyle(fontSize: 14)),
+              ),
+            ),
+            const SizedBox(height: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey),
+                  color: Colors.white,
+                ),
+                child: DropdownButton<String>(
+                  value: selectedSemester,
+                  isExpanded: true,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  underline: const SizedBox(),
+                  items: semesterList.map((semester) {
+                    return DropdownMenuItem(
+                      value: semester,
+                      child: Text(
+                        semester,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    if (value != null) {
+                      setState(() {
+                        selectedSemester = value;
+                      });
+                    }
+                  },
                 ),
               ),
             ),
