@@ -106,7 +106,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Already a member? ",
+                    "Have an account? ",
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                   GestureDetector(
