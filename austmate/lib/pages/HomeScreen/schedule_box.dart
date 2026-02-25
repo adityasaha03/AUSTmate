@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'schedule_detail_page.dart';
+import '../scheduler_page.dart' ;
 
 class ScheduleBox extends StatelessWidget {
   const ScheduleBox({super.key});
@@ -40,7 +40,7 @@ class ScheduleBox extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ScheduleDetailPage(),
+                    builder: (context) => SchedulerPage(),
                   ),
                 );
               },
