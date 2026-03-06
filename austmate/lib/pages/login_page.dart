@@ -48,8 +48,9 @@ class _LoginPageState extends State<LoginPage> {
 
               TextField(
                 decoration: InputDecoration(
-                  labelText: "Student ID",
-                  prefixIcon: const Icon(Icons.badge_outlined),
+                  labelText: "Email",
+                  //prefixIcon: Icon(Icons.badge_outlined),
+                  prefixIcon: Icon(Icons.email),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
