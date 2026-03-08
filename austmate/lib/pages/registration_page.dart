@@ -24,12 +24,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
     IconData icon,
     TextEditingController controller, {
     bool obscureText = false,
+    bool readOnly = false,
+    VoidCallback? onTap,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: TextField(
         controller: controller,
         obscureText: obscureText,
+        readOnly: readOnly,
+        onTap: onTap,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.grey[50],
@@ -137,6 +141,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 "Birth Date",
                 Icons.calendar_today_outlined,
                 birthController,
+                readOnly: true,
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime.now(),
+                  );
+                  if (pickedDate != null) {
+                    setState(() {
+                      birthController.text =
+                          "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
+                    });
+                  }
+                },
               ),
 
               buildTextField(
