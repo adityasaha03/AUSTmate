@@ -1,6 +1,7 @@
 import 'package:austmate/main.dart';
 import 'package:austmate/pages/registration_page.dart';
 import 'package:flutter/material.dart';
+import '../services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,25 +13,51 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool rememberMe = false;
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  Future<void> login() async {
+    final auth = AuthService();
+
+    try {
+      await auth.signIn(
+        emailController.text.trim(),
+        passwordController.text.trim(),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const SimpleNavigation()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
+
           child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Spacer(),
 
-              Icon(
+              const Icon(
                 Icons.lock_person_rounded,
                 size: 80,
                 color: Color(0xFFE53935),
               ),
-              SizedBox(height: 20),
-              Text(
+
+              const SizedBox(height: 20),
+
+              const Text(
                 "Welcome Back",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -39,25 +66,30 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.black,
                 ),
               ),
-              Text(
+
+              const Text(
                 "Sign in to continue",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey),
               ),
-              SizedBox(height: 40),
+
+              const SizedBox(height: 40),
 
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: "Email",
-                  //prefixIcon: Icon(Icons.badge_outlined),
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ),
+
               const SizedBox(height: 20),
+
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
@@ -79,8 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                   ),
-                  Text("Remember Me"),
-                  Spacer(),
+
+                  const Text("Remember Me"),
+
+                  const Spacer(),
+
                   TextButton(
                     onPressed: () {},
                     child: const Text(
@@ -90,19 +125,15 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 30),
 
               SizedBox(
                 height: 55,
+
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SimpleNavigation(),
-                      ),
-                    );
-                  },
+                  onPressed: login,
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFE53935),
                     foregroundColor: Colors.white,
@@ -111,6 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     elevation: 0,
                   ),
+
                   child: const Text(
                     "Login",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -122,8 +154,10 @@ class _LoginPageState extends State<LoginPage> {
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+
                 children: [
                   const Text("Don't have an account?"),
+
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -133,6 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       );
                     },
+
                     child: const Text(
                       "Sign Up",
                       style: TextStyle(
@@ -143,6 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 10),
             ],
           ),

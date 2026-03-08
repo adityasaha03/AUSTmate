@@ -1,5 +1,7 @@
+import 'package:austmate/main.dart';
 import 'package:austmate/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     );
 
     scaleAnimation = Tween<double>(
@@ -35,30 +37,45 @@ class _SplashScreenState extends State<SplashScreen>
 
     controller.forward();
 
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            Tween<double> fadeTween = Tween(begin: 0.0, end: 1.0);
-            Tween<Offset> slideTween = Tween(
-              begin: Offset(0.0, 0.25),
-              end: Offset.zero,
-            );
+    checkLogin();
+  }
 
-            return FadeTransition(
-              opacity: animation.drive(fadeTween),
-              child: SlideTransition(
-                position: animation.drive(slideTween),
-                child: child,
-              ),
-            );
-          },
-          transitionDuration: Duration(milliseconds: 800),
-        ),
-      );
-    });
+  Future<void> checkLogin() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    final session = Supabase.instance.client.auth.currentSession;
+
+    Widget nextPage;
+
+    if (session != null) {
+      nextPage = const SimpleNavigation();
+    } else {
+      nextPage = const LoginPage();
+    }
+
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => nextPage,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          Tween<double> fadeTween = Tween(begin: 0.0, end: 1.0);
+
+          Tween<Offset> slideTween = Tween(
+            begin: const Offset(0.0, 0.25),
+            end: Offset.zero,
+          );
+
+          return FadeTransition(
+            opacity: animation.drive(fadeTween),
+            child: SlideTransition(
+              position: animation.drive(slideTween),
+              child: child,
+            ),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 800),
+      ),
+    );
   }
 
   @override
@@ -70,26 +87,33 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white30,
+      backgroundColor: Colors.white,
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
             ScaleTransition(
               scale: scaleAnimation,
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
+
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: Color(0xFFFF5A5F),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Icon(Icons.book, size: 100, color: Colors.white),
+
+                child: const Icon(Icons.book, size: 100, color: Colors.white),
               ),
             ),
-            SizedBox(height: 20),
+
+            const SizedBox(height: 20),
+
             FadeTransition(
               opacity: fadeAnimation,
-              child: Text(
+
+              child: const Text(
                 "AustMate",
                 style: TextStyle(
                   fontSize: 30,
@@ -99,20 +123,8 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            /*
-            FadeTransition(
-              opacity: fadeAnimation,
-              child: Text(
-                "Loading...",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black54,
-                  letterSpacing: 1.2,
-                ),
-              ),
-            ),
-            */
+
+            const SizedBox(height: 10),
           ],
         ),
       ),

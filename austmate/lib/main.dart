@@ -2,17 +2,21 @@ import 'package:austmate/pages/GpaCalculator/cgpa_calculator_screen.dart';
 import 'package:austmate/pages/HomeScreen/home_screen.dart';
 import 'package:austmate/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'pages/library_page.dart';
 import 'pages/profile_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    url: 'https://ckwhsciuixnrormdvtzz.supabase.co',
+    anonKey: 'sb_publishable_fWbnazxZAqAZjDXkoKS0jQ_Rf2s_l7R',
+  );
+
   runApp(
-    const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      //home: SimpleNavigation(),
-      home: SplashScreen(),
-    ),
+    const MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()),
   );
 }
 

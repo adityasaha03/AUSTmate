@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:austmate/pages/login_page.dart';
 import 'package:austmate/pages/scheduler_page.dart';
-
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,6 +11,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final supabase = Supabase.instance.client;
+
+  String name = "";
+  String studentId = "";
+
   String selectedSemester = "Year 1 Semester 1";
 
   List<String> semesterList = [
@@ -25,61 +30,113 @@ class _ProfilePageState extends State<ProfilePage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    loadProfile();
+  }
+
+  Future<void> loadProfile() async {
+    final user = supabase.auth.currentUser;
+
+    if (user != null) {
+      final data = await supabase
+          .from('students')
+          .select()
+          .eq('id', user.id)
+          .single();
+
+      setState(() {
+        name = "${data['first_name']} ${data['last_name']}";
+        studentId = data['student_id'] ?? "";
+      });
+    }
+  }
+
+  Future<void> logout() async {
+    await supabase.auth.signOut();
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+
           child: Column(
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
+
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
+
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)],
+                  boxShadow: const [
+                    BoxShadow(color: Colors.black26, blurRadius: 10),
+                  ],
                 ),
+
                 child: Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 45,
                       backgroundColor: Color.fromARGB(255, 233, 195, 184),
                       foregroundColor: Color(0xFFE1625F),
                       child: Icon(Icons.person, size: 40),
                     ),
-                    SizedBox(height: 15),
+
+                    const SizedBox(height: 15),
+
                     Text(
-                      "MD. MUSHFIQUR RAHMAN MAHIN",
+                      "Name: $name",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+
+                    const SizedBox(height: 10),
+
+                    const Text(
                       "Computer Science and Engineering",
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 5),
-                    Text(
+
+                    const SizedBox(height: 5),
+
+                    Text("Student ID: $studentId", textAlign: TextAlign.center),
+
+                    const SizedBox(height: 5),
+
+                    const Text(
                       "Ahsanullah University of Science & Technology",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey),
                     ),
-                    SizedBox(height: 20),
-                    Align(
+
+                    const SizedBox(height: 20),
+
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Text("Select Semester"),
                     ),
-                    SizedBox(height: 5),
+
+                    const SizedBox(height: 5),
+
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
 
                       decoration: BoxDecoration(
-                      
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.grey),
                       ),
@@ -87,17 +144,19 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: DropdownButton<String>(
                         value: selectedSemester,
                         isExpanded: true,
-                        icon: Icon(Icons.keyboard_arrow_down),
-                        underline: SizedBox(),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        underline: const SizedBox(),
+
                         items: semesterList.map((semester) {
                           return DropdownMenuItem(
                             value: semester,
                             child: Text(
                               semester,
-                              style: TextStyle(fontSize: 14),
+                              style: const TextStyle(fontSize: 14),
                             ),
                           );
                         }).toList(),
+
                         onChanged: (value) {
                           if (value != null) {
                             setState(() {
@@ -113,60 +172,56 @@ class _ProfilePageState extends State<ProfilePage> {
 
               const SizedBox(height: 30),
 
-            Row(
-              children: [
-                                
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SchedulerPage(),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SchedulerPage(),
+                          ),
+                        );
+                      },
+
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFE76C6C),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE76C6C),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                    ),
-                    child: const Text(
-                      "Set Schedule",
-                      style: TextStyle(color: Colors.white),
+
+                      child: const Text(
+                        "Set Schedule",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-                
-                const SizedBox(width: 15),
-                
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
+
+                  const SizedBox(width: 15),
+
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: logout,
+
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFE76C6C),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE76C6C),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50), 
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                    ),
-                    child: const Text(
-                      "Logout",
-                      style: TextStyle(color: Colors.white),
+
+                      child: const Text(
+                        "Logout",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
             ],
           ),
         ),
