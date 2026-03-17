@@ -1,5 +1,7 @@
+import 'package:austmate/pages/connect_google_page.dart';
 import 'package:austmate/pages/login_page.dart';
 import 'package:austmate/pages/scheduler_page.dart';
+import 'package:austmate/services/google_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -58,6 +60,17 @@ class _ProfilePageState extends State<ProfilePage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const LoginPage()),
+    );
+  }
+
+  Future<void> _onSetSchedule() async {
+    final connected = await GoogleAuthService.isConnected();
+    if (!mounted) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => connected ? const SchedulerPage() : const ConnectPage(),
+      ),
     );
   }
 
@@ -176,14 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SchedulerPage(),
-                          ),
-                        );
-                      },
+                      onPressed: _onSetSchedule,
 
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFE76C6C),
