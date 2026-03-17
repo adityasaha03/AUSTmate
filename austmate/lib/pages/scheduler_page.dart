@@ -9,9 +9,64 @@ class SchedulerPage extends StatefulWidget {
 }
 
 class _SchedulerPageState extends State<SchedulerPage> {
+  String selectedSemester = "Year 1 Semester 1";
   String? selectedCourse;
   DateTime? repeatUntil;
   bool _saving = false;
+
+  final List<String> semesterList = [
+    "Year 1 Semester 1",
+    "Year 1 Semester 2",
+    "Year 2 Semester 1",
+    "Year 2 Semester 2",
+    "Year 3 Semester 1",
+    "Year 3 Semester 2",
+    "Year 4 Semester 1",
+    "Year 4 Semester 2",
+  ];
+
+  // Course list per semester
+  static const Map<String, List<String>> semesterCourses = {
+  "Year 1 Semester 1": [
+    "HUM1107", "HUM1108", "MATH1115", "PHY1115", "PHY1116",
+    "CHEM1115", "CSE1101", "CSE1102", "CSE1108",
+  ],
+  "Year 1 Semester 2": [
+    "MATH1219", "ME1211", "ME1214", "EEE1241", "EEE1242",
+    "CSE1200", "CSE1203", "CSE1205", "CSE1206",
+  ],
+  "Year 2 Semester 1": [
+    "HUM2109", "MATH2101", "EEE2141", "EEE2142", "CSE2100",
+    "CSE2103", "CSE2104", "CSE2105", "CSE2106",
+  ],
+  "Year 2 Semester 2": [
+    "MATH2203", "CSE2200", "CSE2201", "CSE2202", "CSE2207",
+    "CSE2208", "CSE2211", "CSE2213", "CSE2214",
+  ],
+  "Year 3 Semester 1": [
+    "HUM3115", "CSE3100", "CSE3101", "CSE3103", "CSE3104",
+    "CSE3109", "CSE3110", "CSE3117", "CSE3118",
+  ],
+  "Year 3 Semester 2": [
+    "HUM3207", "CSE3200", "CSE3201", "CSE3202", "CSE3207",
+    "CSE3208", "CSE3213", "CSE3214", "CSE3223", "CSE3224",
+  ],
+  "Year 4 Semester 1": [
+    "IPE4111", "CSE4100", "CSE4113", "CSE4114", "CSE4129", "CSE4130",
+    "CSE4131", "CSE4132", "CSE4137", "CSE4138", "CSE4139", "CSE4140",
+    "CSE4141", "CSE4142", "CSE4143", "CSE4144", "CSE4147", "CSE4148",
+    "CSE4173", "CSE4174", "CSE4175", "CSE4176", "CSE4181", "CSE4182",
+  ],
+  "Year 4 Semester 2": [
+    "CSE4203", "CSE4204", "CSE4250", "CSE4209", "CSE4210", "CSE4211",
+    "CSE4212", "CSE4225", "CSE4226", "CSE4227", "CSE4228", "CSE4257",
+    "CSE4258", "CSE4261", "CSE4262", "CSE4263", "CSE4264", "CSE4283",
+    "CSE4284", "CSE4285", "CSE4286",
+  ],
+};
+
+  List<String> get currentCourses =>
+      semesterCourses[selectedSemester] ?? [];
 
   Map<String, bool> weekdays = {
     "Sunday": false,
@@ -121,7 +176,6 @@ class _SchedulerPageState extends State<SchedulerPage> {
       return;
     }
 
-    // Each selected day maps to its own time slot
     final startTimes = [oneFrom, twoFrom, threeFrom];
     final endTimes = [oneTo, twoTo, threeTo];
 
@@ -178,7 +232,37 @@ class _SchedulerPageState extends State<SchedulerPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Course
+
+                  // --- Semester ---
+                  const Text("Semester",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 12),
+                  DropdownButtonFormField<String>(
+                    value: selectedSemester,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey.shade200,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    items: semesterList
+                        .map((s) => DropdownMenuItem(value: s, child: Text(s)))
+                        .toList(),
+                    onChanged: (v) {
+                      if (v != null) {
+                        setState(() {
+                          selectedSemester = v;
+                          selectedCourse = null; // reset course on semester change
+                        });
+                      }
+                    },
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // --- Course ---
                   const Text("Course",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 12),
@@ -193,16 +277,15 @@ class _SchedulerPageState extends State<SchedulerPage> {
                       ),
                     ),
                     hint: const Text("Select Course..."),
-                    items: ["CSE2100", "CSE2103", "CSE2105"]
-                        .map((c) =>
-                            DropdownMenuItem(value: c, child: Text(c)))
+                    items: currentCourses
+                        .map((c) => DropdownMenuItem(value: c, child: Text(c)))
                         .toList(),
                     onChanged: (v) => setState(() => selectedCourse = v),
                   ),
 
                   const SizedBox(height: 30),
 
-                  // Weekdays
+                  // --- Weekdays ---
                   const Text("Weekdays",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 15),
@@ -244,7 +327,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                   const SizedBox(height: 30),
 
-                  // Time slots
+                  // --- Time slots ---
                   _buildTimeRow(
                     "Time (Day 1)",
                     oneFrom, oneTo,
@@ -264,7 +347,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                     (v) => setState(() => threeTo = v),
                   ),
 
-                  // Repeat Until
+                  // --- Repeat Until ---
                   const Text("Repeat Until",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
@@ -298,7 +381,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                   const SizedBox(height: 28),
 
-                  // Save button
+                  // --- Save ---
                   Align(
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(
@@ -324,6 +407,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                                   TextStyle(fontWeight: FontWeight.w600)),
                     ),
                   ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
