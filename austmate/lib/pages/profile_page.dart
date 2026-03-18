@@ -192,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       onPressed: _onSetSchedule,
 
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE76C6C),
+                        backgroundColor: const Color(0xFFE53935),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -213,7 +213,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       onPressed: logout,
 
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE76C6C),
+                        backgroundColor: const Color(0xFFE53935),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),

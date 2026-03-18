@@ -35,7 +35,7 @@ class _CourseCardState extends State<CourseCard> {
             offset: Offset(0, 4),
           ),
         ],
-        border: Border.all(color: Color(0xFFE76C6C), width: 1.2),
+        border: Border.all(color: Color(0xFFE53935), width: 1.2),
       ),
       padding: const EdgeInsets.all(18),
       child: Column(
@@ -44,7 +44,7 @@ class _CourseCardState extends State<CourseCard> {
           Text(
             widget.course.code,
             style: const TextStyle(
-              color: Color(0xFFE76C6C),
+              color: Color(0xFFE53935),
               fontSize: 16,
               fontWeight: FontWeight.w700,
               letterSpacing: 0.5,
@@ -82,7 +82,7 @@ class _CourseCardState extends State<CourseCard> {
                     Text(
                       '${widget.course.credits}',
                       style: const TextStyle(
-                        color: Color(0xFFE76C6C),
+                        color: Color(0xFFE53935),
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -117,11 +117,11 @@ class _CourseCardState extends State<CourseCard> {
                             dropdownColor: Colors.white,
                             icon: const Icon(
                               Icons.arrow_drop_down,
-                              color: Color(0xFFE76C6C),
+                              color: Color(0xFFE53935),
                               size: 20,
                             ),
                             style: const TextStyle(
-                              color: Color(0xFFE76C6C),
+                              color: Color(0xFFE53935),
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -133,7 +133,7 @@ class _CourseCardState extends State<CourseCard> {
                                   child: Text(
                                     grade,
                                     style: const TextStyle(
-                                      color: Color(0xFFE76C6C),
+                                      color: Color(0xFFE53935),
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),

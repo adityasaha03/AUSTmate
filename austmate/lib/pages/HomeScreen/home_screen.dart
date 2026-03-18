@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: _showAddTaskDialog, 
                     child: Row(
                       children: [
-                        const Icon(Icons.add, color: Color(0xFFE76C6C)),
+                        const Icon(Icons.add, color: Color(0xFFE53935)),
                         const SizedBox(width: 8),
                         Text(
                           "Add task",
@@ -192,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: TaskItem(
                           title: task.name, 
                           badge: remainingDays,
-                          badgeColor: const Color(0xFFE76C6C),
+                          badgeColor: const Color(0xFFE53935),
                           bold: remainingDays == "today",
                         ),
                       ),
