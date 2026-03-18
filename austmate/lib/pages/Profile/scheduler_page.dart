@@ -28,40 +28,40 @@ class _SchedulerPageState extends State<SchedulerPage> {
   // Course list per semester
   static const Map<String, List<String>> semesterCourses = {
   "Year 1 Semester 1": [
-    "HUM1107", "HUM1108", "MATH1115", "PHY1115", "PHY1116",
-    "CHEM1115", "CSE1101", "CSE1102", "CSE1108",
+    "HUM 1107", "HUM 1108", "MATH 1115", "PHY 1115", "PHY 1116",
+    "CHEM 1115", "CSE 1101", "CSE 1102", "CSE 1108",
   ],
   "Year 1 Semester 2": [
-    "MATH1219", "ME1211", "ME1214", "EEE1241", "EEE1242",
-    "CSE1200", "CSE1203", "CSE1205", "CSE1206",
+    "MATH 1219", "ME 1211", "ME 1214", "EEE 1241", "EEE 1242",
+    "CSE 1200", "CSE 1203", "CSE 1205", "CSE 1206",
   ],
   "Year 2 Semester 1": [
-    "HUM2109", "MATH2101", "EEE2141", "EEE2142", "CSE2100",
-    "CSE2103", "CSE2104", "CSE2105", "CSE2106",
+  "HUM 2109", "MATH 2101", "EEE 2141", "EEE 2142", "CSE 2100",
+  "CSE 2103", "CSE 2104", "CSE 2105", "CSE 2106",
   ],
   "Year 2 Semester 2": [
-    "MATH2203", "CSE2200", "CSE2201", "CSE2202", "CSE2207",
-    "CSE2208", "CSE2211", "CSE2213", "CSE2214",
+    "MATH 2203", "CSE 2200", "CSE 2201", "CSE 2202", "CSE 2207",
+    "CSE 2208", "CSE 2211", "CSE 2213", "CSE 2214",
   ],
   "Year 3 Semester 1": [
-    "HUM3115", "CSE3100", "CSE3101", "CSE3103", "CSE3104",
-    "CSE3109", "CSE3110", "CSE3117", "CSE3118",
+    "HUM 3115", "CSE 3100", "CSE 3101", "CSE 3103", "CSE 3104",
+    "CSE 3109", "CSE 3110", "CSE 3117", "CSE 3118",
   ],
   "Year 3 Semester 2": [
-    "HUM3207", "CSE3200", "CSE3201", "CSE3202", "CSE3207",
-    "CSE3208", "CSE3213", "CSE3214", "CSE3223", "CSE3224",
+    "HUM 3207", "CSE 3200", "CSE 3201", "CSE 3202", "CSE 3207",
+    "CSE 3208", "CSE 3213", "CSE 3214", "CSE 3223", "CSE 3224",
   ],
   "Year 4 Semester 1": [
-    "IPE4111", "CSE4100", "CSE4113", "CSE4114", "CSE4129", "CSE4130",
-    "CSE4131", "CSE4132", "CSE4137", "CSE4138", "CSE4139", "CSE4140",
-    "CSE4141", "CSE4142", "CSE4143", "CSE4144", "CSE4147", "CSE4148",
-    "CSE4173", "CSE4174", "CSE4175", "CSE4176", "CSE4181", "CSE4182",
+    "IPE 4111", "CSE 4100", "CSE 4113", "CSE 4114", "CSE 4129", "CSE 4130",
+    "CSE 4131", "CSE 4132", "CSE 4137", "CSE 4138", "CSE 4139", "CSE 4140",
+    "CSE 4141", "CSE 4142", "CSE 4143", "CSE 4144", "CSE 4147", "CSE 4148",
+    "CSE 4173", "CSE 4174", "CSE 4175", "CSE 4176", "CSE 4181", "CSE 4182",
   ],
   "Year 4 Semester 2": [
-    "CSE4203", "CSE4204", "CSE4250", "CSE4209", "CSE4210", "CSE4211",
-    "CSE4212", "CSE4225", "CSE4226", "CSE4227", "CSE4228", "CSE4257",
-    "CSE4258", "CSE4261", "CSE4262", "CSE4263", "CSE4264", "CSE4283",
-    "CSE4284", "CSE4285", "CSE4286",
+    "CSE 4203", "CSE 4204", "CSE 4250", "CSE 4209", "CSE 4210", "CSE 4211",
+    "CSE 4212", "CSE 4225", "CSE 4226", "CSE 4227", "CSE 4228", "CSE 4257",
+    "CSE 4258", "CSE 4261", "CSE 4262", "CSE 4263", "CSE 4264", "CSE 4283",
+    "CSE 4284", "CSE 4285", "CSE 4286",
   ],
 };
 
