@@ -53,6 +53,8 @@ class _SplashScreenState extends State<SplashScreen>
       nextPage = const LoginPage();
     }
 
+    if (!mounted) return;
+
     Navigator.pushReplacement(
       context,
       PageRouteBuilder(
@@ -97,14 +99,20 @@ class _SplashScreenState extends State<SplashScreen>
             ScaleTransition(
               scale: scaleAnimation,
               child: Container(
-                padding: const EdgeInsets.all(20),
-
+                width: 100,
+                height: 100,
                 decoration: BoxDecoration(
-                  color: Color(0xFFFF5A5F),
-                  borderRadius: BorderRadius.circular(30),
+                  color: const Color(0xFFE76C6C),
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: const [
+                    BoxShadow(color: Colors.black26, blurRadius: 12),
+                  ],
                 ),
-
-                child: const Icon(Icons.book, size: 100, color: Colors.white),
+                child: const Icon(
+                  Icons.school_rounded,
+                  size: 56,
+                  color: Colors.white,
+                ),
               ),
             ),
 
@@ -112,14 +120,12 @@ class _SplashScreenState extends State<SplashScreen>
 
             FadeTransition(
               opacity: fadeAnimation,
-
               child: const Text(
-                "AUSTmate",
+                "AustMate",
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  letterSpacing: 1.5,
+                  color: Color(0xFFE76C6C),
                 ),
               ),
             ),
