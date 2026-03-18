@@ -31,7 +31,7 @@ class TaskItem extends StatelessWidget {
                 fontWeight: bold ? FontWeight.bold : FontWeight.w500,
                 fontSize: 16,
                 color: Colors.black,
-                letterSpacing: 0.2,
+                //letterSpacing: 0.2,
               ),
             ),
           ),
