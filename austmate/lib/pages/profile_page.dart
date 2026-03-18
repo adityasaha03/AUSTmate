@@ -17,6 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   String name = "";
   String studentId = "";
+  String department = "";
 
   @override
   void initState() {
@@ -35,6 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
       setState(() {
         name = "${data['first_name']} ${data['last_name']}";
         studentId = data['student_id'] ?? "";
+        department = data['department'] ?? "No Department Set";
       });
     }
   }
@@ -102,10 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      "Computer Science and Engineering",
-                      textAlign: TextAlign.center,
-                    ),
+                    Text(department, textAlign: TextAlign.center),
                     const SizedBox(height: 5),
                     Text("Student ID: $studentId", textAlign: TextAlign.center),
                     const SizedBox(height: 5),

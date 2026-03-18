@@ -18,6 +18,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final birthController = TextEditingController();
   final phoneController = TextEditingController();
   final studentIdController = TextEditingController();
+  String? selectedDepartment;
+
+  final List<String> departments = [
+    'Department of Architecture (ARCH)',
+    'Department of Civil Engineering (CE)',
+    'Department of Computer Science & Engineering (CSE)',
+    'Department of Electrical & Electronic Engineering (EEE)',
+    'Department of Industrial and Production Engineering (IPE)',
+    'Department of Mechanical Engineering (ME)',
+    'Department of Textile Engineering (TE)',
+    'Department of School of Business (SoB)',
+  ];
 
   Widget buildTextField(
     String label,
@@ -25,6 +37,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     TextEditingController controller, {
     bool obscureText = false,
     bool readOnly = false,
+    String? hintText,
     VoidCallback? onTap,
   }) {
     return Padding(
@@ -39,6 +52,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           fillColor: Colors.grey[50],
           prefixIcon: Icon(icon, color: const Color(0xFFE53935), size: 20),
           labelText: label,
+          hintText: hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide.none,
@@ -49,11 +63,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
   }
 
   Future<void> register() async {
+    final email = emailController.text.trim();
+    if (!email.endsWith('@aust.edu')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please use your @aust.edu email.')),
+      );
+      return;
+    }
+
+    if (selectedDepartment == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select your department.')),
+      );
+      return;
+    }
+
     final auth = AuthService();
 
     try {
       final response = await auth.signUp(
-        emailController.text.trim(),
+        email,
         passwordController.text.trim(),
         firstNameController.text.trim(),
         lastNameController.text.trim(),
@@ -68,6 +97,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               'birth_date': birthController.text,
               'phone_number': phoneController.text,
               'student_id': studentIdController.text,
+              'department': selectedDepartment,
             })
             .eq('id', user.id);
       }
@@ -135,6 +165,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 "Email Address",
                 Icons.email_outlined,
                 emailController,
+                hintText: "example12@aust.edu",
               ),
 
               buildTextField(
@@ -168,6 +199,43 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 "Student ID",
                 Icons.badge_outlined,
                 studentIdController,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: DropdownButtonFormField<String>(
+                  isExpanded: true,
+                  value: selectedDepartment,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey[50],
+                    prefixIcon: const Icon(
+                      Icons.account_balance_outlined,
+                      color: Color(0xFFE53935),
+                      size: 20,
+                    ),
+                    labelText: "Department",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  items: departments.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(fontSize: 14),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (newValue) {
+                    setState(() {
+                      selectedDepartment = newValue;
+                    });
+                  },
+                ),
               ),
 
               buildTextField(
