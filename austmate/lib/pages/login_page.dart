@@ -11,19 +11,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool rememberMe = false;
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   Future<void> login() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (!email.endsWith('@aust.edu')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please use your @aust.edu email.')),
+      );
+      return;
+    }
+
     final auth = AuthService();
 
     try {
-      await auth.signIn(
-        emailController.text.trim(),
-        passwordController.text.trim(),
-      );
+      await auth.signIn(email, password);
 
       Navigator.pushReplacement(
         context,
@@ -35,8 +40,6 @@ class _LoginPageState extends State<LoginPage> {
       ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
-
-  //aust
 
   @override
   Widget build(BuildContext context) {
@@ -102,31 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              Row(
-                children: [
-                  Checkbox(
-                    value: rememberMe,
-                    activeColor: const Color(0xFFE53935),
-                    onChanged: (value) {
-                      setState(() {
-                        rememberMe = value!;
-                      });
-                    },
-                  ),
-
-                  const Text("Remember Me"),
-
-                  const Spacer(),
-
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Forgot Password?",
-                      style: TextStyle(color: Color(0xFFE53935)),
-                    ),
-                  ),
-                ],
-              ),
+              const SizedBox(height: 10),
 
               const SizedBox(height: 30),
 
