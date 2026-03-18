@@ -48,18 +48,18 @@ class SemesterCGPACalculatorScreen extends StatelessWidget {
                   const Text(
                     "Quick CGPA Calculator",
                     style: TextStyle(
-                      color: Color(0xFFE53935),
-                      fontSize: 22,
+                      color: Colors.black,
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
+                      
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 18),
                   const Text(
                     'Spring 2025',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28,
+                      color: Color(0xFFE53935),
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0.5,
                     ),

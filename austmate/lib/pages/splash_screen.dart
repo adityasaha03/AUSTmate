@@ -114,7 +114,7 @@ class _SplashScreenState extends State<SplashScreen>
               opacity: fadeAnimation,
 
               child: const Text(
-                "AustMate",
+                "AUSTmate",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,

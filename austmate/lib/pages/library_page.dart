@@ -157,6 +157,7 @@ class _LibraryPageState extends State<LibraryPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 22),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Align(
