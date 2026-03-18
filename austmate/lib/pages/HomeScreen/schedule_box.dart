@@ -46,7 +46,7 @@ class _ScheduleBoxState extends State<ScheduleBox> {
 
     final items = jsonDecode(response.body)['items'] as List;
     for (final cal in items) {
-      if (cal['summary'] == 'AustMate') return cal['id'];
+      if (cal['summary'] == 'AUSTmate') return cal['id'];
     }
     return null;
   }
@@ -123,7 +123,7 @@ class _ScheduleBoxState extends State<ScheduleBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(minHeight: 120),
+      constraints: const BoxConstraints(minHeight: 144),
       decoration: BoxDecoration(
         color: const Color(0xFFF6F2F2),
         borderRadius: BorderRadius.circular(8),
@@ -204,33 +204,37 @@ class _ScheduleBoxState extends State<ScheduleBox> {
                 ),
               ],
             ),
-            const SizedBox(height: 4),
-            Text(
-              "Head over to Profile page to connect to Google",
-              style: TextStyle(
-                color: Colors.black.withOpacity(0.35),
-                fontSize: 12,
-              ),
-            ),
+            // const SizedBox(height: 4),
+            // Text(
+            //   "Head over to Profile page to connect to Google",
+            //   style: TextStyle(
+            //     color: Colors.black.withOpacity(0.35),
+            //     fontSize: 12,
+            //   ),
+            // ),
           ],
         ),
       );
     }
 
     if (_todayEvents.isEmpty) {
-      return Text(
+    return SizedBox(
+      width: double.infinity,
+      child: Text(
         "No classes today 🎉",
+        textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.black.withOpacity(0.5),
-          fontSize: 13,
+          fontSize: 15,
         ),
-      );
-    }
+      ),
+    );
+  }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      children: _todayEvents.take(3).map((e) {
+      children: _todayEvents.take(5).map((e) {
         return ScheduleText(
           "${_formatTime(e.start)}-${_formatTime(e.end)}",
           e.title,
@@ -245,32 +249,60 @@ class ScheduleText extends StatelessWidget {
   final String subject;
   const ScheduleText(this.time, this.subject, {super.key});
 
+  
+  @override
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: "$time ",
-              style: TextStyle(
-                color: Colors.black.withOpacity(0.4),
-                fontSize: 13,
-              ),
+      padding: const EdgeInsets.only(bottom: 5),
+      child: Row(
+        children: [
+          // Fixed width container forces all event names to align
+          SizedBox(
+            width: 140, // ← adjust this to fit your longest time string
+            child: Row(
+              children: [
+                Text(
+                  time.split('-')[0], // start time
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(0.4),
+                    fontSize: 13,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: Text(
+                    "-",
+                    style: TextStyle(
+                      color: Colors.black.withOpacity(0.3),
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+                Text(
+                  time.split('-')[1], // end time
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(0.4),
+                    fontSize: 13,
+                  ),
+                ),
+              ],
             ),
-            TextSpan(
-              text: subject,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              subject,
               style: TextStyle(
                 color: Colors.black.withOpacity(0.7),
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
+              overflow: TextOverflow.ellipsis,
             ),
-          ],
-        ),
-        overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
-  }
+}
 }
