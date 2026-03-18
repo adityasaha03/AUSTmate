@@ -2,6 +2,8 @@ import 'package:austmate/pages/Profile/about_page.dart';
 import 'package:austmate/pages/login_page.dart';
 import 'package:austmate/pages/Profile/routine_page.dart';
 import 'package:austmate/pages/Profile/scheduler_page.dart';
+import 'package:austmate/pages/Profile/connect_google_page.dart';
+import 'package:austmate/services/google_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -26,25 +28,24 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> loadProfile() async {
-  try {
-    final user = supabase.auth.currentUser;
-    if (user != null) {
-      final data = await supabase
-          .from('students')
-          .select()
-          .eq('id', user.id)
-          .single();
-      setState(() {
-        name = "${data['first_name']} ${data['last_name']}";
-        studentId = data['student_id'] ?? "";
-        department = data['department'] ?? "No Department Set";
-      });
+    try {
+      final user = supabase.auth.currentUser;
+      if (user != null) {
+        final data = await supabase
+            .from('students')
+            .select()
+            .eq('id', user.id)
+            .single();
+        setState(() {
+          name = "${data['first_name']} ${data['last_name']}";
+          studentId = data['student_id'] ?? "";
+          department = data['department'] ?? "No Department Set";
+        });
+      }
+    } catch (e) {
+      print("Error loading profile: $e");
     }
-  } catch (e) {
-    print("Error loading profile: $e"); // 👈 will tell you exactly what's wrong
   }
-
-}
 
   Future<void> logout() async {
     await supabase.auth.signOut();
@@ -54,6 +55,18 @@ class _ProfilePageState extends State<ProfilePage> {
         MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     }
+  }
+
+  Future<void> _onSetSchedule() async {
+    final connected = await GoogleAuthService.isConnected();
+    if (!mounted) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) =>
+            connected ? const SchedulerPage() : const ConnectPage(),
+      ),
+    );
   }
 
   @override
@@ -67,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
             MaterialPageRoute(builder: (context) => const AboutPage()),
           );
         },
-        backgroundColor: Color(0xFFE53935),
+        backgroundColor: const Color(0xFFE53935),
         foregroundColor: Colors.white,
         shape: const CircleBorder(),
         elevation: 4,
@@ -149,20 +162,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
               const SizedBox(height: 30),
 
-            Padding(
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SchedulerPage(),
-                            ),
-                          );
-                        },
+                        onPressed: _onSetSchedule,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFE53935),
                           shape: RoundedRectangleBorder(
@@ -177,7 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
 
-                    const SizedBox(width: 35), // only this gap is fixed, which is fine
+                    const SizedBox(width: 35),
 
                     Expanded(
                       child: ElevatedButton(
