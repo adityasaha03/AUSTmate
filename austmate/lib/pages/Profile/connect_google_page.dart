@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:austmate/services/google_auth_service.dart';
-import 'package:austmate/pages/scheduler_page.dart';
+import 'package:austmate/pages/Profile/scheduler_page.dart';
 
 class ConnectPage extends StatefulWidget {
   const ConnectPage({super.key});

@@ -1,7 +1,7 @@
-import 'package:austmate/pages/about_page.dart';
+import 'package:austmate/pages/Profile/about_page.dart';
 import 'package:austmate/pages/login_page.dart';
-import 'package:austmate/pages/routine_page.dart';
-import 'package:austmate/pages/scheduler_page.dart';
+import 'package:austmate/pages/Profile/routine_page.dart';
+import 'package:austmate/pages/Profile/scheduler_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -25,6 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> loadProfile() async {
+  try {
     final user = supabase.auth.currentUser;
     if (user != null) {
       final data = await supabase
@@ -37,7 +38,11 @@ class _ProfilePageState extends State<ProfilePage> {
         studentId = data['student_id'] ?? "";
       });
     }
+  } catch (e) {
+    print("Error loading profile: $e"); // 👈 will tell you exactly what's wrong
   }
+
+}
 
   Future<void> logout() async {
     await supabase.auth.signOut();
@@ -135,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
                         ),
                       ),
                     ),
@@ -146,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(height: 30),
 
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   children: [
                     Expanded(
@@ -173,7 +178,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
 
-                    const SizedBox(width: 20), // only this gap is fixed, which is fine
+                    const SizedBox(width: 35), // only this gap is fixed, which is fine
 
                     Expanded(
                       child: ElevatedButton(

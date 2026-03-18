@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../scheduler_page.dart' ;
+import '../Profile/scheduler_page.dart' ;
 
 class ScheduleBox extends StatelessWidget {
   const ScheduleBox({super.key});
