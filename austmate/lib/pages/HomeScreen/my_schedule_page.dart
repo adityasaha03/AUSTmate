@@ -44,7 +44,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
 
     final items = jsonDecode(response.body)['items'] as List;
     for (final cal in items) {
-      if (cal['summary'] == 'AUSTate') return cal['id'];
+      if (cal['summary'] == 'AUSTmate') return cal['id'];
     }
     return null;
   }
