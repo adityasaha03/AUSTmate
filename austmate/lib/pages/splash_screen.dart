@@ -102,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen>
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFE76C6C),
+                  color: const Color(0xFFE53935),
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: const [
                     BoxShadow(color: Colors.black26, blurRadius: 12),
@@ -121,11 +121,11 @@ class _SplashScreenState extends State<SplashScreen>
             FadeTransition(
               opacity: fadeAnimation,
               child: const Text(
-                "AustMate",
+                "AUSTmate",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFE76C6C),
+                  color: Color(0xFFE53935),
                 ),
               ),
             ),

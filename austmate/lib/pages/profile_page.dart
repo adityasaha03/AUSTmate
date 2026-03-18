@@ -60,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
             MaterialPageRoute(builder: (context) => const AboutPage()),
           );
         },
-        backgroundColor: Color(0xFFE76C6C),
+        backgroundColor: Color(0xFFE53935),
         foregroundColor: Colors.white,
         shape: const CircleBorder(),
         elevation: 4,
@@ -130,12 +130,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: const Icon(Icons.table_chart_outlined),
                         label: const Text("View Routine"),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE76C6C),
+                          backgroundColor: const Color(0xFFE53935),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
                         ),
                       ),
                     ),
@@ -145,49 +145,54 @@ class _ProfilePageState extends State<ProfilePage> {
 
               const SizedBox(height: 30),
 
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SchedulerPage(),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SchedulerPage(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFE53935),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
                           ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE53935),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                      ),
-                      child: const Text(
-                        "Set Schedule",
-                        style: TextStyle(color: Colors.white),
+                        child: const Text(
+                          "Set Schedule",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 15),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: logout,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE53935),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+
+                    const SizedBox(width: 20), // only this gap is fixed, which is fine
+
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: logout,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFE53935),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                      ),
-                      child: const Text(
-                        "Logout",
-                        style: TextStyle(color: Colors.white),
+                        child: const Text(
+                          "Logout",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
