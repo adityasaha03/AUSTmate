@@ -100,20 +100,20 @@ class _SemesterCGPACalculatorScreenState extends State<SemesterCGPACalculatorScr
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Quick CGPA Calculator",
+                    "Quick GPA Calculator",
                     style: TextStyle(
-                      color: Color(0xFFE76C6C),
-                      fontSize: 22,
+                      color: Colors.black,
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
+                      
                     ),
                   ),
                   const SizedBox(height: 20),
                   const Text(
                     'Spring 2025',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28,
+                      color: Color(0xFFE53935),
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0.5,
                     ),
@@ -122,7 +122,7 @@ class _SemesterCGPACalculatorScreenState extends State<SemesterCGPACalculatorScr
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildSummaryItem('Your CGPA', currentGPA.toStringAsFixed(2)),
+                      _buildSummaryItem('Your GPA', currentGPA.toStringAsFixed(2)),
                       _buildSummaryItem('Total Credits', totalCredits.toStringAsFixed(2).replaceAll(RegExp(r'\.00$'), '')),
                     ],
                   ),
@@ -161,7 +161,7 @@ class _SemesterCGPACalculatorScreenState extends State<SemesterCGPACalculatorScr
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addCourse,
-        backgroundColor: const Color(0xFFE76C6C),
+        backgroundColor: const Color(0xFFE53935),
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );
