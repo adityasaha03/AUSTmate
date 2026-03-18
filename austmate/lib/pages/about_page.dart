@@ -24,7 +24,7 @@ class AboutPage extends StatelessWidget {
               width: 100,
               height: 100,
               decoration: BoxDecoration(
-                color: const Color(0xFFE76C6C),
+                color: const Color(0xFFE53935),
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: const [
                   BoxShadow(color: Colors.black26, blurRadius: 12),
@@ -44,7 +44,7 @@ class AboutPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFE76C6C),
+                color: Color(0xFFE53935),
               ),
             ),
 
@@ -53,12 +53,12 @@ class AboutPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
               decoration: BoxDecoration(
-                color: const Color(0xFFE76C6C).withValues(alpha: 0.1),
+                color: const Color(0xFFE53935).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Text(
                 'Version 1.0.0',
-                style: TextStyle(fontSize: 13, color: Color(0xFFE76C6C)),
+                style: TextStyle(fontSize: 13, color: Color(0xFFE53935)),
               ),
             ),
 
@@ -141,17 +141,17 @@ class AboutPage extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color(0xFFE76C6C).withValues(alpha: 0.07),
+                color: const Color(0xFFE53935).withValues(alpha: 0.07),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: const Color(0xFFE76C6C).withValues(alpha: 0.3),
+                  color: const Color(0xFFE53935).withValues(alpha: 0.3),
                 ),
               ),
               child: const Column(
                 children: [
                   Icon(
                     Icons.location_city_rounded,
-                    color: Color(0xFFE76C6C),
+                    color: Color(0xFFE53935),
                     size: 32,
                   ),
                   SizedBox(height: 8),
@@ -161,7 +161,7 @@ class AboutPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFFE76C6C),
+                      color: Color(0xFFE53935),
                     ),
                   ),
                   SizedBox(height: 4),
@@ -177,7 +177,7 @@ class AboutPage extends StatelessWidget {
             const SizedBox(height: 30),
 
             const Text(
-              '© 2025 AUSTmate. All rights reserved.',
+              '© 2026 AUSTmate. All rights reserved.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
@@ -194,8 +194,8 @@ class AboutPage extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 20,
-          backgroundColor: const Color(0xFFE76C6C).withValues(alpha: 0.15),
-          child: Icon(icon, color: const Color(0xFFE76C6C), size: 20),
+          backgroundColor: const Color(0xFFE53935).withValues(alpha: 0.15),
+          child: Icon(icon, color: const Color(0xFFE53935), size: 20),
         ),
         const SizedBox(width: 14),
         Expanded(

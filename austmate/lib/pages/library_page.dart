@@ -34,7 +34,7 @@ class _LibraryPageState extends State<LibraryPage> {
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Card(
           elevation: 10,
-          //color: Color(0xFFE1625F),
+          //color: Color(0xFFE53935),
           color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -44,7 +44,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Icon(Icons.file_copy, color: Color(0xFFE1625F)),
+                      Icon(Icons.file_copy, color: Color(0xFFE53935)),
                       SizedBox(width: 20),
                       Expanded(
                         child: Column(
@@ -78,7 +78,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   children: [
                     Card(
                       //elevation: 10,
-                      color: Color(0xFFFF5A5F),
+                      color: Color(0xFFE53935),
                       //color: Color(0xFFFF8A80),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -98,16 +98,18 @@ class _LibraryPageState extends State<LibraryPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
+                              SizedBox(width: 5),
                               Icon(
                                 Icons.drive_file_move,
-                                //color: Color(0xFFE1625F),
+                                //color: Color(0xFFE53935),
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 15),
+                              SizedBox(width: 9),
                               Text(
                                 "Open in Drive",
                                 style: TextStyle(color: Colors.white),
                               ),
+                              SizedBox(width: 5),
                             ],
                           ),
                         ),
@@ -134,7 +136,7 @@ class _LibraryPageState extends State<LibraryPage> {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.share, color: Color(0xFFE1625F)),
+                              Icon(Icons.share, color: Color(0xFFE53935)),
                               SizedBox(width: 8),
                               Text("Share Link"),
                             ],
@@ -157,6 +159,7 @@ class _LibraryPageState extends State<LibraryPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 22),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Align(
@@ -185,7 +188,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: "Search Materials",
-                      prefixIcon: Icon(Icons.search, color: Color(0xFFE1625F)),
+                      prefixIcon: Icon(Icons.search, color: Color(0xFFE53935)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
