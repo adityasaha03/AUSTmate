@@ -1,5 +1,8 @@
+import 'package:austmate/data/library_data.dart';
 import 'package:austmate/pages/drive_viewer_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 
 class LibraryPage extends StatefulWidget {
   const LibraryPage({super.key});
@@ -9,9 +12,12 @@ class LibraryPage extends StatefulWidget {
 }
 
 class _LibraryPageState extends State<LibraryPage> {
-  String selectedSemester = "Year 1 Semester 1";
+  String selectedSemester = "All";
+  String searchQuery = "";
+  final TextEditingController _searchController = TextEditingController();
 
   List<String> semesterList = [
+    "All",
     "Year 1 Semester 1",
     "Year 1 Semester 2",
     "Year 2 Semester 1",
@@ -23,6 +29,12 @@ class _LibraryPageState extends State<LibraryPage> {
   ];
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Widget MaterialCard(
       String courseName,
@@ -31,10 +43,9 @@ class _LibraryPageState extends State<LibraryPage> {
       String shareLink,
     ) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
         child: Card(
           elevation: 10,
-          //color: Color(0xFFE1625F),
           color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -44,27 +55,25 @@ class _LibraryPageState extends State<LibraryPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Icon(Icons.file_copy, color: Color(0xFFE1625F)),
-                      SizedBox(width: 20),
+                      const Icon(Icons.file_copy, color: Color(0xFFE1625F)),
+                      const SizedBox(width: 20),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               courseName,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                //color: Colors.white,
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               courseDetails,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
-                                //color: Colors.white,
                               ),
                             ),
                           ],
@@ -73,13 +82,11 @@ class _LibraryPageState extends State<LibraryPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Card(
-                      //elevation: 10,
-                      color: Color(0xFFFF5A5F),
-                      //color: Color(0xFFFF8A80),
+                      color: const Color(0xFFFF5A5F),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -94,15 +101,11 @@ class _LibraryPageState extends State<LibraryPage> {
                             ),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.drive_file_move,
-                                //color: Color(0xFFE1625F),
-                                color: Colors.white,
-                              ),
+                              Icon(Icons.drive_file_move, color: Colors.white),
                               SizedBox(width: 15),
                               Text(
                                 "Open in Drive",
@@ -113,21 +116,39 @@ class _LibraryPageState extends State<LibraryPage> {
                         ),
                       ),
                     ),
-                    //SizedBox(width: 15),
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Color(0xFFF2FEF7),
+                        color: const Color(0xFFF2FEF7),
                         border: Border.all(color: Colors.red, width: 1.5),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
-                        onTap: () {
-                          print("Tap on $shareLink");
+                        onTap: () async {
+                          // Copy to clipboard
+                          await Clipboard.setData(
+                            ClipboardData(text: driveLink),
+                          );
+
+                          // Show snackbar
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Link copied to clipboard!"),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          }
+
+                          // Open share menu
+                          await Share.share(
+                            "Check out this resource for $courseName: $driveLink",
+                            subject: "AUST Mate Resource",
+                          );
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
                             horizontal: 12,
                             vertical: 8,
                           ),
@@ -151,14 +172,26 @@ class _LibraryPageState extends State<LibraryPage> {
       );
     }
 
+    final filteredCardsBySemester = selectedSemester == "All"
+        ? libraryCards
+        : libraryCards
+              .where((card) => card.semester == selectedSemester)
+              .toList();
+
+    final filteredCards = filteredCardsBySemester.where((card) {
+      final query = searchQuery.toLowerCase();
+      return card.courseName.toLowerCase().contains(query) ||
+          card.courseDetails.toLowerCase().contains(query);
+    }).toList();
+
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Align(
                   alignment: AlignmentGeometry.centerLeft,
                   child: Text(
@@ -178,14 +211,34 @@ class _LibraryPageState extends State<LibraryPage> {
                       BoxShadow(
                         color: Colors.grey.shade400,
                         blurRadius: 6,
-                        offset: Offset(0, 4),
+                        offset: const Offset(0, 4),
                       ),
                     ],
                   ),
                   child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
+                      setState(() {
+                        searchQuery = value;
+                      });
+                    },
                     decoration: InputDecoration(
                       hintText: "Search Materials",
-                      prefixIcon: Icon(Icons.search, color: Color(0xFFE1625F)),
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Color(0xFFE1625F),
+                      ),
+                      suffixIcon: searchQuery.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(Icons.clear, color: Colors.grey),
+                              onPressed: () {
+                                setState(() {
+                                  _searchController.clear();
+                                  searchQuery = "";
+                                });
+                              },
+                            )
+                          : null,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -194,13 +247,13 @@ class _LibraryPageState extends State<LibraryPage> {
                 ),
               ),
               const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Select Semester",
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
               ),
@@ -238,66 +291,14 @@ class _LibraryPageState extends State<LibraryPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 25),
-              MaterialCard(
-                "Software Development - II",
-                "CSE 2100",
-                "https://drive.google.com/drive/folders/1OzCL8utxKeIZ02U7G0W18WHJq6O6GLxD",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Data Structure",
-                "CSE 2103",
-                "https://drive.google.com/drive/folders/1OzCL8utxKeIZ02U7G0W18WHJq6O6GLxD",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Data Structure Lab",
-                "CSE 2104",
-                "https://drive.google.com/drive/folders/1c-qFFuClCJ-dJ5rmg23ZlILSOXkyPXpk",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Digital Logic Design",
-                "CSE 2105",
-                "https://drive.google.com/drive/folders/13JJBrnZ14gvETyiQ3efMFPybC9JhTH95",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Digital Logic Design Lab",
-                "CSE 2106",
-                "https://drive.google.com/drive/folders/16JEjtO9TXtjeR8VUjsJ3-cYb-GPFzyoE",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Electrical and Electronic Engineering",
-                "EEE 2141",
-                "https://drive.google.com/drive/folders/1b0guabwf3--mXyhY48i72365WpKDDaYf",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Electrical and Electronic Engineering Lab",
-                "EEE 2141",
-                "https://drive.google.com/drive/folders/1rU1A6j8YJ8m25aKbVNLKmO-YDIqcfQJe",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Society, Ethics & Technology",
-                "HUM 2109",
-                "https://drive.google.com/drive/folders/1Pr6DyapwjZBaGZxTajrtnAHmdtlQju-3",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Complex Variable, Laplace Transformation & Statistics",
-                "MATH 2101",
-                "https://drive.google.com/drive/folders/1TiaLChE_sZH6fBJFjgnr1K9IQItLUpQl",
-                "Share Link",
-              ),
-              MaterialCard(
-                "Question Bank",
-                "Previous Year Question Bank",
-                "https://drive.google.com/drive/folders/1cMcqFWDa_HERZLzvuFk5FBa7GJqvjgyv",
-                "Share Link",
+              const SizedBox(height: 25),
+              ...filteredCards.map(
+                (card) => MaterialCard(
+                  card.courseName,
+                  card.courseDetails,
+                  card.driveLink,
+                  "Share Link",
+                ),
               ),
             ],
           ),
