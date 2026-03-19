@@ -134,12 +134,10 @@ class _LibraryPageState extends State<LibraryPage> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
                         onTap: () async {
-                          // Copy to clipboard
                           await Clipboard.setData(
                             ClipboardData(text: driveLink),
                           );
 
-                          // Show snackbar
                           if (context.mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -149,7 +147,6 @@ class _LibraryPageState extends State<LibraryPage> {
                             );
                           }
 
-                          // Open share menu
                           await Share.share(
                             "Check out this resource for $courseName: $driveLink",
                             subject: "AUST Mate Resource",
