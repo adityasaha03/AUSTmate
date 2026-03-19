@@ -200,7 +200,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Select Semester",
-                    style: TextStyle(fontSize: 14),
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
               ),
