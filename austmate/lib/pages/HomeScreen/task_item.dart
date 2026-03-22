@@ -5,6 +5,7 @@ class TaskItem extends StatelessWidget {
   final String badge;
   final Color badgeColor;
   final bool bold;
+  final VoidCallback? onDelete;
 
   const TaskItem({
     super.key,
@@ -12,6 +13,7 @@ class TaskItem extends StatelessWidget {
     required this.badge,
     required this.badgeColor,
     this.bold = false,
+    this.onDelete,
   });
 
   @override
@@ -54,6 +56,12 @@ class TaskItem extends StatelessWidget {
               fontSize: 14,
             ),
           ),
+        ),
+         const SizedBox(width: 8),
+        IconButton(
+          icon: const Icon(Icons.delete_outline, color: Color(0xFFE53935)),
+          onPressed: onDelete,
+          tooltip: "Delete",
         ),
       ],
     );

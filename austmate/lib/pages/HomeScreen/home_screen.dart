@@ -179,7 +179,9 @@ final List<Task> _tasks = [];
                   ),
                 ),
                 const SizedBox(height: 32),
-                ..._tasks.map((task) {
+                ..._tasks.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final task = entry.value;
                   final String remainingDays = _getRemainingDaysString(task.dueDate);
                   return Column(
                     children: [
@@ -190,6 +192,11 @@ final List<Task> _tasks = [];
                           badge: remainingDays,
                           badgeColor: const Color(0xFFE53935),
                           bold: remainingDays == "today",
+                          onDelete: () {
+                            setState(() {
+                              _tasks.removeAt(index);
+                            });
+                          },
                         ),
                       ),
                       const SizedBox(height: 16),
