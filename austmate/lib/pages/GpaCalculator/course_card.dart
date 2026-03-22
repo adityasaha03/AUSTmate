@@ -123,16 +123,7 @@ class _CourseCardState extends State<CourseCard> {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: widget.onDeleted,
-                icon: const Icon(
-                  Icons.delete_outline,
-                  color: Color(0xFFE76C6C),
-                  size: 20,
-                ),
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
+              
             ],
           ),
           const SizedBox(height: 4),
