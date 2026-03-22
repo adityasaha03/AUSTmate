@@ -15,11 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _taskNameController = TextEditingController();
   DateTime? _selectedDate;
 
-  final List<Task> _tasks = [
-    Task(name: "SD PRESENTATION", dueDate: DateTime.now()),
-    Task(name: "DLD Report", dueDate: DateTime.now().add(const Duration(days: 1))),
-    Task(name: "DS Lab Mid", dueDate: DateTime.now().add(const Duration(days: 3))),
-  ];
+final List<Task> _tasks = [];
 
   String _getRemainingDaysString(DateTime dueDate) {
     final now = DateTime.now();
@@ -30,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final days = difference.inDays;
 
     if (days == 0) {
-      return "today";
+      return "Today";
     } else if (days == 1) {
       return "1 day";
     } else if (days > 1) {

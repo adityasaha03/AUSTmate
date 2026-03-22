@@ -37,14 +37,17 @@ class TaskItem extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 16),
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+       Container(
+          width: 70, // Fixed width for alignment
+          padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
             color: badgeColor,
             borderRadius: BorderRadius.circular(16),
           ),
+          alignment: Alignment.center,
           child: Text(
             badge,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
