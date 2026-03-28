@@ -304,7 +304,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                                 const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
                               color: isSelected
-                                  ? const Color(0xFFE53935)
+                                  ? const Color(0xFFD2042D)
                                   : Colors.grey.shade200,
                               borderRadius: BorderRadius.circular(25),
                             ),
@@ -364,7 +364,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                       child: Row(
                         children: [
                           const Icon(Icons.calendar_today,
-                              size: 18, color: Color(0xFFE53935)),
+                              size: 18, color: Color(0xFFD2042D)),
                           const SizedBox(width: 10),
                           Text(
                             repeatLabel,
@@ -387,7 +387,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                     child: ElevatedButton(
                       onPressed: _saving ? null : _save,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE53935),
+                        backgroundColor: const Color(0xFFD2042D),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 28, vertical: 14),

@@ -80,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
             MaterialPageRoute(builder: (context) => const AboutPage()),
           );
         },
-        backgroundColor: const Color(0xFFE53935),
+        backgroundColor: const Color(0xFFD2042D),
         foregroundColor: Colors.white,
         shape: const CircleBorder(),
         elevation: 4,
@@ -109,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     const CircleAvatar(
                       radius: 45,
                       backgroundColor: Color.fromARGB(255, 233, 195, 184),
-                      foregroundColor: Color(0xFFE1625F),
+                      foregroundColor: Color(0xFFD2042D),
                       child: Icon(Icons.person, size: 40),
                     ),
                     const SizedBox(height: 15),
@@ -147,7 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: const Icon(Icons.table_chart_outlined),
                         label: const Text("View Routine"),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE53935),
+                          backgroundColor: const Color(0xFFD2042D),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
@@ -170,7 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: ElevatedButton(
                         onPressed: _onSetSchedule,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE53935),
+                          backgroundColor: const Color(0xFFD2042D),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
@@ -189,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: ElevatedButton(
                         onPressed: logout,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE53935),
+                          backgroundColor: const Color(0xFFD2042D),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
