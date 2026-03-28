@@ -60,7 +60,7 @@ class _SimpleNavigationState extends State<SimpleNavigation> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
         backgroundColor: Color(0xFFEFEEF2),
-        selectedItemColor: Color(0xFFFF6F61),
+        selectedItemColor: Color(0xFFD2042D),
         unselectedItemColor: Color(0xFF7A818E),
       ),
     );

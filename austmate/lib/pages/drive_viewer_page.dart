@@ -48,24 +48,44 @@ class _DriveViewerPageState extends State<DriveViewerPage> {
       ..loadRequest(Uri.parse(getEmbedUrl(widget.driveUrl)));
   }
 
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: const Color(0xFFE1625F),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => controller.reload(),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+       child: Column(
+        children: [
+          const SizedBox(height: 20), // <-- Add this line!
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 16), // <-- Change top padding to 0
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.refresh, color: Color(0xFFE53935)),
+                  onPressed: () => controller.reload(),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Stack(
+              children: [
+                WebViewWidget(controller: controller),
+                if (loading) const Center(child: CircularProgressIndicator()),
+              ],
+            ),
           ),
         ],
-      ),
-      body: Stack(
-        children: [
-          WebViewWidget(controller: controller),
-          if (loading) const Center(child: CircularProgressIndicator()),
-        ],
+       ),
       ),
     );
   }

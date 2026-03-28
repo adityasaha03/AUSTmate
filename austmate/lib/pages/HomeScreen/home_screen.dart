@@ -144,7 +144,7 @@ final List<Task> _tasks = [];
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    "Today",
+                    "My Day",
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
