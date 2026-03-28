@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
               const Icon(
                 Icons.lock_person_rounded,
                 size: 80,
-                color: Color(0xFFE53935),
+                color: Color(0xFFD2042D),
               ),
 
               const SizedBox(height: 20),
@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: login,
 
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFE53935),
+                    backgroundColor: const Color(0xFFD2042D),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -154,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text(
                       "Sign Up",
                       style: TextStyle(
-                        color: Color(0xFFE53935),
+                        color: Color(0xFFD2042D),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

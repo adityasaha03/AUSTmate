@@ -170,7 +170,7 @@ class _ScheduleBoxState extends State<ScheduleBox> {
             height: 20,
             child: CircularProgressIndicator(
               strokeWidth: 2,
-              color: Color(0xFFE53935),
+              color: Color(0xFFD2042D),
             ),
           ),
         ),
@@ -192,12 +192,12 @@ class _ScheduleBoxState extends State<ScheduleBox> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Icon(Icons.link_off,
-                    color: Color(0xFFE53935), size: 25),
+                    color: Color(0xFFD2042D), size: 25),
                 const SizedBox(width: 6),
                 const Text(
                   "Connect Google",
                   style: TextStyle(
-                    color: Colors.red,
+                    color: Color(0xFFD2042D) ,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

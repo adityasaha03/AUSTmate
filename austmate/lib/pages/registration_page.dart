@@ -50,7 +50,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.grey[50],
-          prefixIcon: Icon(icon, color: const Color(0xFFE53935), size: 20),
+          prefixIcon: Icon(icon, color: const Color(0xFFD2042D), size: 20),
           labelText: label,
           hintText: hintText,
           border: OutlineInputBorder(
@@ -211,7 +211,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     fillColor: Colors.grey[50],
                     prefixIcon: const Icon(
                       Icons.account_balance_outlined,
-                      color: Color(0xFFE53935),
+                      color: Color(0xFFD2042D),
                       size: 20,
                     ),
                     labelText: "Department",
@@ -253,7 +253,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 child: ElevatedButton(
                   onPressed: register,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFE53935),
+                    backgroundColor: const Color(0xFFD2042D),
                     foregroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -286,7 +286,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     child: const Text(
                       "Login",
                       style: TextStyle(
-                        color: Color(0xFFE53935),
+                        color: Color(0xFFD2042D),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

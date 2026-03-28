@@ -122,7 +122,7 @@ class _SemesterCGPACalculatorScreenState
                       isExpanded: true,
                       icon: const Icon(
                         Icons.keyboard_arrow_down,
-                        color: Color(0xFFE53935),
+                        color: Color(0xFFD2042D),
                       ),
                       underline: const SizedBox(),
                       items: semesterList.map((semester) {

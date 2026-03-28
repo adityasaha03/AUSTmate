@@ -93,7 +93,7 @@ class _CourseCardState extends State<CourseCard> {
           ),
         ],
         border: Border.all(
-          color: const Color(0xFFE53935).withOpacity(0.3),
+          color: const Color(0xFFD2042D).withOpacity(0.3),
           width: 1.2,
         ),
       ),
@@ -109,7 +109,7 @@ class _CourseCardState extends State<CourseCard> {
                   controller: _codeController,
                   onChanged: widget.onCodeChanged,
                   style: const TextStyle(
-                    color: Color(0xFFE53935),
+                    color: Color(0xFFD2042D),
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.5,
@@ -178,11 +178,11 @@ class _CourseCardState extends State<CourseCard> {
                             dropdownColor: Colors.white,
                             icon: const Icon(
                               Icons.arrow_drop_down,
-                              color: Color(0xFFE53935),
+                              color: Color(0xFFD2042D),
                               size: 20,
                             ),
                             style: const TextStyle(
-                              color: Color(0xFFE53935),
+                              color: Color(0xFFD2042D),
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -197,7 +197,7 @@ class _CourseCardState extends State<CourseCard> {
                                       '',
                                     ),
                                     style: const TextStyle(
-                                      color: Color(0xFFE53935),
+                                      color: Color(0xFFD2042D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -247,11 +247,11 @@ class _CourseCardState extends State<CourseCard> {
                             dropdownColor: Colors.white,
                             icon: const Icon(
                               Icons.arrow_drop_down,
-                              color: Color(0xFFE53935),
+                              color: Color(0xFFD2042D),
                               size: 20,
                             ),
                             style: const TextStyle(
-                              color: Color(0xFFE53935),
+                              color: Color(0xFFD2042D),
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -263,7 +263,7 @@ class _CourseCardState extends State<CourseCard> {
                                   child: Text(
                                     grade,
                                     style: const TextStyle(
-                                      color: Color(0xFFE53935),
+                                      color: Color(0xFFD2042D),
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),

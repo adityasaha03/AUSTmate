@@ -164,7 +164,7 @@ final List<Task> _tasks = [];
                     onTap: _showAddTaskDialog, 
                     child: Row(
                       children: [
-                        const Icon(Icons.add, color: Color(0xFFE53935)),
+                        const Icon(Icons.add, color: Color(0xFFD2042D)),
                         const SizedBox(width: 8),
                         Text(
                           "Add task",
@@ -190,7 +190,7 @@ final List<Task> _tasks = [];
                         child: TaskItem(
                           title: task.name, 
                           badge: remainingDays,
-                          badgeColor: const Color(0xFFE53935),
+                          badgeColor: const Color(0xFFD2042D),
                           bold: remainingDays == "today",
                           onDelete: () {
                             setState(() {

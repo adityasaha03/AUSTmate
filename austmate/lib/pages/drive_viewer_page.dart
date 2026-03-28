@@ -55,9 +55,9 @@ class _DriveViewerPageState extends State<DriveViewerPage> {
       body: SafeArea(
        child: Column(
         children: [
-          const SizedBox(height: 20), // <-- Add this line!
+          const SizedBox(height: 20), 
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 0, 24, 16), // <-- Change top padding to 0
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -70,7 +70,7 @@ class _DriveViewerPageState extends State<DriveViewerPage> {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.refresh, color: Color(0xFFE53935)),
+                  icon: const Icon(Icons.refresh, color: Color(0xFFD2042D)),
                   onPressed: () => controller.reload(),
                 ),
               ],

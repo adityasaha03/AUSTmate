@@ -59,7 +59,7 @@ class TaskItem extends StatelessWidget {
         ),
          const SizedBox(width: 8),
         IconButton(
-          icon: const Icon(Icons.delete_outline, color: Color(0xFFE53935)),
+          icon: const Icon(Icons.delete_outline, color: Color(0xFFD2042D)),
           onPressed: onDelete,
           tooltip: "Delete",
         ),

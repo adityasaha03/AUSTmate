@@ -164,7 +164,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
       ),
       body: _loading
           ? const Center(
-              child: CircularProgressIndicator(color: Color(0xFFE53935)))
+              child: CircularProgressIndicator(color: Color(0xFFD2042D)))
           : _error != null
               ? Center(
                   child: Padding(
@@ -173,7 +173,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Icon(Icons.error_outline,
-                            color: Color(0xFFE53935), size: 48),
+                            color: Color(0xFFD2042D), size: 48),
                         const SizedBox(height: 16),
                         Text(
                           _error!,
@@ -185,7 +185,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
                         ElevatedButton(
                           onPressed: _loadEvents,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFE53935),
+                            backgroundColor: const Color(0xFFD2042D),
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -198,7 +198,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
                   ),
                 )
               : RefreshIndicator(
-                  color: const Color(0xFFE53935),
+                  color: const Color(0xFFD2042D),
                   onRefresh: _loadEvents,
                   child: ListView(
                     padding: const EdgeInsets.all(16),
@@ -225,7 +225,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
                 width: 4,
                 height: 20,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFE53935),
+                  color: const Color(0xFFD2042D),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -302,7 +302,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
             width: 4,
             height: 40,
             decoration: BoxDecoration(
-              color: const Color(0xFFE53935),
+              color: const Color(0xFFD2042D),
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -330,7 +330,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
             ),
           ),
           const Icon(Icons.school_outlined,
-              color: Color(0xFFE53935), size: 20),
+              color: Color(0xFFD2042D), size: 20),
         ],
       ),
     );

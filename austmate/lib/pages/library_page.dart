@@ -56,7 +56,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Icon(Icons.file_copy, color: Color(0xFFE1625F)),
+                      Icon(Icons.file_copy, color: Color(0xFFD2042D)),
                       SizedBox(width: 20),
                       Expanded(
                         child: Column(
@@ -88,7 +88,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   children: [
                     Card(
                       //elevation: 10,
-                      color: Color(0xFFFF5A5F),
+                      color: Color(0xFFD2042D),
                       //color: Color(0xFFFF8A80),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -129,7 +129,7 @@ class _LibraryPageState extends State<LibraryPage> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: const Color(0xFFF2FEF7),
-                        border: Border.all(color: Colors.red, width: 1.5),
+                        border: Border.all(color: Color(0xFFD2042D), width: 1.5),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
@@ -160,7 +160,7 @@ class _LibraryPageState extends State<LibraryPage> {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.share, color: Color(0xFFE53935)),
+                              Icon(Icons.share, color: Color(0xFFD2042D)),
                               SizedBox(width: 8),
                               Text("Share Link"),
                             ],
@@ -229,7 +229,7 @@ class _LibraryPageState extends State<LibraryPage> {
                     },
                     decoration: InputDecoration(
                       hintText: "Search Materials",
-                      prefixIcon: Icon(Icons.search, color: Color(0xFFE1625F)),
+                      prefixIcon: Icon(Icons.search, color: Color(0xFFD2042D)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
