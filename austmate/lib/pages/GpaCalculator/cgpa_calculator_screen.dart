@@ -114,7 +114,7 @@ class _SemesterCGPACalculatorScreenState
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey.shade300),
+                      border: Border.all(color: Colors.grey),
                       color: Colors.white,
                     ),
                     child: DropdownButton<String>(

@@ -56,25 +56,26 @@ class _LibraryPageState extends State<LibraryPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
-                      Icon(Icons.file_copy, color: Color(0xFFD2042D)),
-                      SizedBox(width: 20),
+                      Icon(Icons.file_copy, color: Color(0xFFD2042D), size: 35),
+                      SizedBox(width: 18),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const SizedBox(height: 8),
                             Text(
                               courseName,
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 5),
                             Text(
-                              courseDetails,
+                              "source - $courseDetails",
                               style: const TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ],
@@ -83,7 +84,7 @@ class _LibraryPageState extends State<LibraryPage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
                 Row(
                   children: [
                     Card(
@@ -113,7 +114,7 @@ class _LibraryPageState extends State<LibraryPage> {
                                 //color: Color(0xFFE1625F),
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 15),
+                              SizedBox(width: 8),
                               Text(
                                 "Open in Drive",
                                 style: TextStyle(color: Colors.white),
@@ -195,6 +196,8 @@ class _LibraryPageState extends State<LibraryPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 22),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Align(
@@ -285,8 +288,8 @@ class _LibraryPageState extends State<LibraryPage> {
               const SizedBox(height: 25),
               ...filteredCards.map(
                 (card) => MaterialCard(
-                  card.courseName,
                   card.courseDetails,
+                  card.courseName,
                   card.driveLink,
                   "Share Link",
                 ),

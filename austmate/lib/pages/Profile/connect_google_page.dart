@@ -48,11 +48,11 @@ class _ConnectPageState extends State<ConnectPage> {
             Image.asset("assets/images/google_logo.png", height: 50),
             const SizedBox(height: 50),
             _loading
-                ? const CircularProgressIndicator(color: Color(0xFFE53935))
+                ? const CircularProgressIndicator(color: Color(0xFFD2042D))
                 : ElevatedButton(
                     onPressed: _connect,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE53935),
+                      backgroundColor: const Color(0xFFD2042D),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 16),
                       shape: RoundedRectangleBorder(

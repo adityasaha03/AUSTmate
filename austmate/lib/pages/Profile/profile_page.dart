@@ -80,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
             MaterialPageRoute(builder: (context) => const AboutPage()),
           );
         },
-        backgroundColor: const Color(0xFFE53935),
+        backgroundColor: const Color(0xFFD2042D),
         foregroundColor: Colors.white,
         shape: const CircleBorder(),
         elevation: 4,
@@ -114,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     const SizedBox(height: 15),
                     Text(
-                      "Name: $name",
+                      "$name",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 16,
@@ -122,9 +122,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text(department, textAlign: TextAlign.center),
-                    const SizedBox(height: 5),
                     Text("Student ID: $studentId", textAlign: TextAlign.center),
+                    const SizedBox(height: 5),
+                    Text(department, textAlign: TextAlign.center),
                     const SizedBox(height: 5),
                     const Text(
                       "Ahsanullah University of Science & Technology",
@@ -147,12 +147,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: const Icon(Icons.table_chart_outlined),
                         label: const Text("View Routine"),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE53935),
+                          backgroundColor: const Color(0xFFD2042D),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
                       ),
                     ),
@@ -170,7 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: ElevatedButton(
                         onPressed: _onSetSchedule,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE53935),
+                          backgroundColor: const Color(0xFFD2042D),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
@@ -189,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: ElevatedButton(
                         onPressed: logout,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE53935),
+                          backgroundColor: const Color(0xFFD2042D),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
