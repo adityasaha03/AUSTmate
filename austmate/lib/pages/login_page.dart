@@ -45,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
 
       body: SafeArea(
         child: Padding(
@@ -110,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 30),
 
               SizedBox(
+                width: double.infinity,
                 height: 55,
 
                 child: ElevatedButton(
