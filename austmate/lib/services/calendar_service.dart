@@ -32,8 +32,7 @@ class CalendarService {
 
   static String _pad(int n) => n.toString().padLeft(2, '0');
 
-  /// Checks Google Calendar API for an existing "AUSTmate" calendar.
-  /// Returns its ID if found, null otherwise.
+  
   static Future<String?> _findExistingCalendar(String token) async {
     final response = await http.get(
       Uri.parse(_calendarListFetchUrl),
@@ -51,23 +50,20 @@ class CalendarService {
     return null;
   }
 
-  /// Gets the AUSTmate calendar ID using a 3-step priority:
-  /// 1. Locally stored ID (fastest)
-  /// 2. Search existing calendars on Google (handles reinstall / cleared data)
-  /// 3. Create a brand-new calendar
+  
   static Future<String> _getOrCreateCalendar(String token) async {
-    // Step 1: Check local storage
+    
     final stored = await _storage.read(key: _keyCalendarId);
     if (stored != null) return stored;
 
-    // Step 2: Check if "AUSTmate" calendar already exists on Google
+    
     final existing = await _findExistingCalendar(token);
     if (existing != null) {
       await _storage.write(key: _keyCalendarId, value: existing);
       return existing;
     }
 
-    // Step 3: Create a new calendar
+    
     final response = await http.post(
       Uri.parse(_calendarListUrl),
       headers: {
@@ -91,7 +87,7 @@ class CalendarService {
     return calendarId;
   }
 
-  /// Creates a single weekly recurring event in the AustMate calendar.
+ 
   static Future<void> createRecurringEvent({
     required String calendarId,
     required String token,
@@ -104,7 +100,7 @@ class CalendarService {
     final eventsUrl =
         'https://www.googleapis.com/calendar/v3/calendars/${Uri.encodeComponent(calendarId)}/events';
 
-    // Find next occurrence of this weekday
+    
     final today = DateTime.now();
     final targetDay = _dayMap[weekdayName]!;
     int daysAhead = (targetDay - today.weekday + 7) % 7;
@@ -149,7 +145,7 @@ class CalendarService {
     }
   }
 
-  /// Creates recurring events for multiple weekdays in parallel.
+  
   static Future<void> createEventsForSchedule({
     required String courseName,
     required List<String> selectedDays,
@@ -157,7 +153,7 @@ class CalendarService {
     required List<TimeOfDay?> endTimes,
     required DateTime repeatUntil,
   }) async {
-    // Resolve token and calendar ID ONCE before spawning parallel futures
+    
     final token = await GoogleAuthService.getAccessToken();
     if (token == null) throw Exception("Not authenticated with Google.");
     final calendarId = await _getOrCreateCalendar(token);

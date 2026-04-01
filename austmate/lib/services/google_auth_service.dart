@@ -37,13 +37,13 @@ class GoogleAuthService {
     }
   }
  
-  /// Checks locally whether Google is connected.
+  
   static Future<bool> isConnected() async {
     final value = await _storage.read(key: _keyConnected);
     return value == 'true';
   }
 
-  /// Gets a fresh access token — tries silent sign-in first.
+  
   static Future<String?> getAccessToken() async {
     final account = _googleSignIn.currentUser
         ?? await _googleSignIn.signInSilently();
@@ -56,11 +56,11 @@ class GoogleAuthService {
       }
     }
 
-    // Fall back to locally stored token
+    
     return await _storage.read(key: _keyAccessToken);
   }
 
-  /// Disconnects Google — clears all local data.
+  
   static Future<void> disconnect() async {
     await _googleSignIn.signOut();
     await _storage.delete(key: _keyAccessToken);

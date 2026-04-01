@@ -25,7 +25,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
     "Year 4 Semester 2",
   ];
 
-  // Course list per semester
+
   static const Map<String, List<String>> semesterCourses = {
   "Year 1 Semester 1": [
     "HUM 1107", "HUM 1108", "MATH 1115", "PHY 1115", "PHY 1116",
@@ -233,7 +233,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  // --- Semester ---
+                 
                   const Text("Semester",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 12),
@@ -254,7 +254,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                       if (v != null) {
                         setState(() {
                           selectedSemester = v;
-                          selectedCourse = null; // reset course on semester change
+                          selectedCourse = null; 
                         });
                       }
                     },
@@ -262,7 +262,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                   const SizedBox(height: 20),
 
-                  // --- Course ---
+                 
                   const Text("Course",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 12),
@@ -285,7 +285,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                   const SizedBox(height: 30),
 
-                  // --- Weekdays ---
+                 
                   const Text("Weekdays",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 15),
@@ -327,7 +327,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                   const SizedBox(height: 30),
 
-                  // --- Time slots ---
+                 
                   _buildTimeRow(
                     "Time (Day 1)",
                     oneFrom, oneTo,
@@ -347,7 +347,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
                     (v) => setState(() => threeTo = v),
                   ),
 
-                  // --- Repeat Until ---
+                  
                   const Text("Repeat Until",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
@@ -381,7 +381,7 @@ class _SchedulerPageState extends State<SchedulerPage> {
 
                   const SizedBox(height: 28),
 
-                  // --- Save ---
+                  
                   Align(
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(

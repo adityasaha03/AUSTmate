@@ -204,14 +204,6 @@ class _ScheduleBoxState extends State<ScheduleBox> {
                 ),
               ],
             ),
-            // const SizedBox(height: 4),
-            // Text(
-            //   "Head over to Profile page to connect to Google",
-            //   style: TextStyle(
-            //     color: Colors.black.withOpacity(0.35),
-            //     fontSize: 12,
-            //   ),
-            // ),
           ],
         ),
       );

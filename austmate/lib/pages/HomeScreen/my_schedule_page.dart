@@ -218,7 +218,7 @@ class _MySchedulePageState extends State<MySchedulePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Day header
+         
           Row(
             children: [
               Container(
